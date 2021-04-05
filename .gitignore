@@ -2,3 +2,4 @@
 *.odt
 *.o
 ./bin/*
+./test/bin/*
