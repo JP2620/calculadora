@@ -9,9 +9,8 @@ int main( int argc, char *argv[] )  {
 
    printf("Ingrese la operación a realizar: ");
    scanf("%d %c %d", &operando_1, &operador, &operando_2);
-   printf("Usted ingresó: %d %c %d\n", operando_1, operador, operando_2);
    calc_sum(operando_1, operando_2, &resultado);
-   printf("El resultado es: %d\n", resultado);
+   printf("El resultado es: %x, en %x\n", resultado, (unsigned int)&resultado);
 
 }
 
