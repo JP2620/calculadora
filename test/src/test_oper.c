@@ -1,8 +1,6 @@
 #include "../include/minunit.h"
-#include "../../include/cdecl.h"
+#include "../../include/calc.h"
 
-void PRE_CDECL calc_sum( int, int, int * ) POST_CDECL;
-void PRE_CDECL calc_resta( int, int, int * ) POST_CDECL;
 
 MU_TEST(test_sum_int)
 {
