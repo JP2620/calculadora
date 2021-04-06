@@ -25,7 +25,7 @@ calc.o: calc.c asm_io.o
 vpath test_%.h ./test/include
 vpath test_%.c ./test/src
 
-test: test_oper.o test_runner.o suma.o
+test: test_oper.o test_runner.o suma.o resta.o
 	$(CC) $(CFLAGS) -o ./test/bin/$@ $^
 
 test_%.o: test_%.c ./test/include/minuinit.h
