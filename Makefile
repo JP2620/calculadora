@@ -11,16 +11,15 @@ VPATH         = ./src
 vpath %.h $(HEADERS)
 vpath %.asm ./src
 
-calc: calc.o suma.o asm_io.o
+all: calc test
+
+calc: calc.o suma.o resta.o asm_io.o
 	$(CC) $(CFLAGS) -o $(BIN)/$@ $^
 
 calc.o: calc.c asm_io.o
 	$(CC) $(CFLAGS) -c $< -o $@
 
-asm_io.o: asm_io.asm
-	$(AS) $(ASFLAGS) -d ELF_TYPE $< -o $@
-
-suma.o: suma.asm
+%.o: %.asm
 	$(AS) $(ASFLAGS) -d ELF_TYPE $< -o $@
 
 vpath test_%.h ./test/include
