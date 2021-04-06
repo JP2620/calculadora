@@ -1,19 +1,20 @@
-segment .text
-        global  calc_sum
+%include "./src/asm_io.inc"
 
-calc_sum:
-        enter   0               ; allocate room for sum on stack
+segment .text
+        global  calc_resta
+
+calc_resta:
+        enter   0,0               ; allocate room for sum on stack
         push    ebx               ; IMPORTANT!
 
+        dump_stack 1, 2, 4
         mov     eax, [ebp+8]   
-        add     eax, [ebp+12]
+        sub     eax, [ebp+12]
         mov     ebx, [ebp+16]
         mov     [ebx], eax
+        dump_regs 1
 
         pop     ebx               ; restore ebx
         leave
         ret
-
-
-
 

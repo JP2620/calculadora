@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 void PRE_CDECL calc_sum( int, int, int * ) POST_CDECL;
+void PRE_CDECL calc_resta( int, int, int * ) POST_CDECL;
 
 int main( int argc, char **argv )  {
    int opt;
@@ -19,8 +20,8 @@ int main( int argc, char **argv )  {
    printf("Ingrese la operación a realizar\n> ");
    scanf("%d %c %d", &operando_1, &operador, &operando_2);
    printf("Usted ingresó: %d %c %d", operando_1, operador, operando_2);
-   calc_sum(operando_1, operando_2, &resultado);
-   printf("El resultado es: %x, en %x\n", resultado, (unsigned int)&resultado);
+   calc_resta(operando_1, operando_2, &resultado);
+   printf("El resultado es: %d, en %x\n", resultado, (unsigned int)&resultado);
 
 }
 
