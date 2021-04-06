@@ -10,6 +10,7 @@ int main( int argc, char **argv )  {
    int opt;
    int bflag = 0; // Flag para binario
 
+   void (*operacion)(int, int, int*);
    int operando_1, operando_2, resultado;
    char operador;
 
@@ -19,9 +20,18 @@ int main( int argc, char **argv )  {
    
    printf("Ingrese la operación a realizar\n> ");
    scanf("%d %c %d", &operando_1, &operador, &operando_2);
-   printf("Usted ingresó: %d %c %d", operando_1, operador, operando_2);
-   calc_resta(operando_1, operando_2, &resultado);
-   printf("El resultado es: %d, en %x\n", resultado, (unsigned int)&resultado);
+   printf("Usted ingresó: %d %c %d\n", operando_1, operador, operando_2);
+
+
+   if (operador == '+')
+      operacion = calc_sum;
+   else if (operador == '-')
+      operacion = calc_resta;
+   else 
+      return 1;
+   operacion(operando_1, operando_2, &resultado);
+   printf("El resultado es: %x, en %x\n", resultado, (unsigned int)&resultado);
+   return 0;
 
 }
 
