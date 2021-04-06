@@ -11,6 +11,8 @@ VPATH         = ./src
 vpath %.h $(HEADERS)
 vpath %.asm ./src
 
+all: calc test
+
 calc: calc.o suma.o asm_io.o
 	$(CC) $(CFLAGS) -o $(BIN)/$@ $^
 
@@ -26,7 +28,7 @@ suma.o: suma.asm
 vpath test_%.h ./test/include
 vpath test_%.c ./test/src
 
-test: test_oper.o test_runner.o
+test: test_oper.o test_runner.o suma.o
 	$(CC) $(CFLAGS) -o ./test/bin/$@ $^
 
 test_%.o: test_%.c ./test/include/minuinit.h
