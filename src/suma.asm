@@ -2,7 +2,7 @@ segment .text
         global  calc_sum
 
 calc_sum:
-        enter   0               ; allocate room for sum on stack
+        enter   0,0               ; allocate room for sum on stack
         push    ebx               ; IMPORTANT!
 
         mov     eax, [ebp+8]   
