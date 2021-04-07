@@ -16,9 +16,6 @@ all: calc test
 calc: calc.o suma.o resta.o asm_io.o
 	$(CC) $(CFLAGS) -o $(BIN)/$@ $^
 
-calc.o: calc.c asm_io.o
-	$(CC) $(CFLAGS) -c $< -o $@
-
 %.o: %.asm
 	$(AS) $(ASFLAGS) -d ELF_TYPE $< -o $@
 

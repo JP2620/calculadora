@@ -1,5 +1,3 @@
-%include "./src/asm_io.inc"
-
 segment .text
         global  calc_resta
 

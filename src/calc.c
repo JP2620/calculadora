@@ -30,7 +30,7 @@ int main( int argc, char **argv )  {
    else 
       return 1;
    operacion(operando_1, operando_2, &resultado);
-   printf("El resultado es: %x, en %x\n", resultado, (unsigned int)&resultado);
+   printf("El resultado es: %d\n", resultado);
    return 0;
 
 }
