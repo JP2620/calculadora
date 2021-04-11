@@ -3,3 +3,5 @@
 *.o
 ./bin/*
 ./test/bin/*
+bin/calc
+test/bin/test
