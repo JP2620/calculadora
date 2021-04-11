@@ -7,8 +7,6 @@ calc_sum:
 
         mov     eax, [ebp+8]   
         add     eax, [ebp+12]
-        mov     ebx, [ebp+16]
-        mov     [ebx], eax
 
         pop     ebx               ; restore ebx
         leave

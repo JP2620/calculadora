@@ -9,7 +9,7 @@ int main( int argc, char **argv )  {
    int opt;
    int bflag = 0; // Flag para binario
 
-   void (*operacion)(int, int, int*);
+   int (*operacion)(int, int);
    int operando_1, operando_2, resultado;
    char operador;
 
@@ -29,7 +29,7 @@ int main( int argc, char **argv )  {
       operacion = calc_resta;
    else 
       return 1;
-   operacion(operando_1, operando_2, &resultado);
+   resultado = operacion(operando_1, operando_2);
    printf("El resultado es: %d\n", resultado);
    return 0;
 
