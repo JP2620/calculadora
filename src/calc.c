@@ -34,9 +34,9 @@ int main(int argc, char **argv)
    }
 
    // TODO: Estaria desperdiciando 2 numeros para detectar overflow. Ver si es mejor sacar esto
-   if (operando_1 > 2147483646 || operando_1 < -2147483646 || operando_2 > 2147483646 || operando_2 < -2147483646)
+   if (operando_1 > abs(2147483646) || operando_2 > abs(2147483646))
    {
-      printf("Numeros fuera del rango\n");
+      printf("Error: Numeros fuera del rango\n");
       return 1;
    }
 
@@ -57,7 +57,7 @@ int main(int argc, char **argv)
 
    if (overflow)
    {
-      printf("Numeros fuera del rango\n");
+      printf("Error: Resutado fuera del rango\n");
       return 1;
    }
 
