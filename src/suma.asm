@@ -11,7 +11,3 @@ calc_sum:
         pop     ebx               ; restore ebx
         leave
         ret
-
-
-
-

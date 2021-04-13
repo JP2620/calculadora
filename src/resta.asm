@@ -11,4 +11,3 @@ calc_resta:
         pop     ebx               ; restore ebx
         leave
         ret
-
