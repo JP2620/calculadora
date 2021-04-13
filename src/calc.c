@@ -10,10 +10,11 @@ int main(int argc, char **argv)
 {
    // Inicializaciones
    int opt;
-   int bflag = 0; // Flag para binario
-   char sig = '+';
+   int bflag = 0;    // Flag para binario
+   char sig = '+';   // Signo resultante
+   int overflow = 0; // Flag de desbordamiento
 
-   int (*operacion)(int, int);
+   int (*operacion)(int, int, int *);
    int operando_1, operando_2, resultado, bin_1, bin_2;
    char operador;
 
@@ -32,6 +33,13 @@ int main(int argc, char **argv)
       operando_2 = bin_to_dec(operando_2);
    }
 
+   // TODO: Estaria desperdiciando 2 numeros para detectar overflow. Ver si es mejor sacar esto
+   if (operando_1 > 2147483646 || operando_1 < -2147483646 || operando_2 > 2147483646 || operando_2 < -2147483646)
+   {
+      printf("Numeros fuera del rango\n");
+      return 1;
+   }
+
    // Ejecución de operaciones
    if (operador == '+')
       operacion = calc_sum;
@@ -39,12 +47,18 @@ int main(int argc, char **argv)
       operacion = calc_resta;
    else
       return 1;
-   resultado = operacion(operando_1, operando_2);
+   resultado = operacion(operando_1, operando_2, &overflow);
 
    if (resultado < 0)
    {
       resultado *= (-1);
       sig = '-';
+   }
+
+   if (overflow)
+   {
+      printf("Numeros fuera del rango\n");
+      return 1;
    }
 
    // Conversion de entrada
