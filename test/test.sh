@@ -168,3 +168,5 @@ assert_equals "$response" "(-) 8"
 
 response=$(./bin/calc b -1010 - -10)
 assert_equals "$response" "(-) 1000"
+
+exit 0
