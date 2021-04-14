@@ -80,9 +80,6 @@ assert_equals "$response" "(+) 0"
 response=$(./bin/calc d 10 + -2)
 assert_equals "$response" "(+) 8"
 
-response=$(./bin/calc b 1010 + -10)
-assert_equals "$response" "(+) 1000"
-
 response=$(./bin/calc d -10 + -2)
 assert_equals "$response" "(-) 12"
 
@@ -168,5 +165,3 @@ assert_equals "$response" "(-) 8"
 
 response=$(./bin/calc b -1010 - -10)
 assert_equals "$response" "(-) 1000"
-
-exit 0
