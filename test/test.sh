@@ -34,10 +34,10 @@ assert_equals "$response" "Error: Cantidad de argumentos invalido"
 response=$(./bin/calc d 2 + 2 5)
 assert_equals "$response" "Error: Cantidad de argumentos invalido"
 
-response=$(./bin/calc d 2147483647 + 2)
+response=$(./bin/calc d 2147483648 + 2)
 assert_equals "$response" "Error: Numeros fuera del rango"
 
-response=$(./bin/calc d 2 + 2147483647)
+response=$(./bin/calc d 2 + 2147483648)
 assert_equals "$response" "Error: Numeros fuera del rango"
 
 response=$(./bin/calc b 111111111111111111111111111111111 + 10)
