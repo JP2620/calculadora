@@ -67,12 +67,12 @@ int32_t main(int32_t argc, char **argv)
    }
 
    // Conversion de entrada
-   if (bflag)
-   {
-      resultado_bin = itoa(resultado, resultado_bin);
-      printf("(%c) %s\n", sig, resultado_bin);
-   }
-   else
+   // if (bflag)
+   // {
+   //    resultado_bin = itoa(resultado, resultado_bin);
+   //    printf("(%c) %s\n", sig, resultado_bin);
+   // }
+   // else
       printf("(%c) %d\n", sig, resultado);
 
    return 0;
