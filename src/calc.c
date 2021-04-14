@@ -53,16 +53,17 @@ int32_t main(int32_t argc, char **argv)
 
    resultado = operacion(operando_1, operando_2, &overflow);
 
-   if (resultado < 0)
-   {
-      resultado *= (-1);
-      sig = '-';
-   }
 
-   if (overflow)
+   if (overflow || resultado==-2147483648)
    {
       printf("Error: Resutado fuera del rango\n");
       return 1;
+   }
+
+   if (resultado < 0)
+   {
+      resultado = abs(resultado);
+      sig = '-';
    }
 
    // Conversion de entrada
@@ -110,7 +111,6 @@ int32_t bin_to_dec(const char *argv)
       decimal = decimal + rem * base;
       base = base * 2;
    }
-   printf("Numero: %d\n", decimal);
    return decimal * neg;
 }
 
