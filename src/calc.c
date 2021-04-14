@@ -6,7 +6,7 @@
 #include "../include/calc.h"
 
 int32_t bin_to_dec(const char *argv);
-char *itoa(int value, char *result);
+void printf_bin(int32_t value);
 int32_t verification_unit(const char *argv);
 int32_t verification_opt(const char *argv);
 int32_t verification_num(const char *argv);
@@ -53,8 +53,7 @@ int32_t main(int32_t argc, char **argv)
 
    resultado = operacion(operando_1, operando_2, &overflow);
 
-
-   if (overflow || resultado==-2147483648)
+   if (overflow || resultado == -2147483648)
    {
       printf("Error: Resutado fuera del rango\n");
       return 1;
@@ -66,13 +65,13 @@ int32_t main(int32_t argc, char **argv)
       sig = '-';
    }
 
-   // Conversion de entrada
-   // if (bflag)
-   // {
-   //    resultado_bin = itoa(resultado, resultado_bin);
-   //    printf("(%c) %s\n", sig, resultado_bin);
-   // }
-   // else
+   if (bflag)
+   {
+      printf("(%c) ", sig);
+      printf_bin(resultado);
+      printf("\n");
+   }
+   else
       printf("(%c) %d\n", sig, resultado);
 
    return 0;
@@ -83,7 +82,7 @@ int32_t bin_to_dec(const char *argv)
    int32_t rem, decimal = 0, base = 1;
    int32_t num = 0, piv = 0, neg = 1;
 
-   if (strlen(argv)>1 && (argv[0] == '-' || argv[0] == '+'))
+   if (strlen(argv) > 1 && (argv[0] == '-' || argv[0] == '+'))
    {
       piv = 1;
       if (argv[0] == '-')
@@ -189,25 +188,23 @@ int32_t verification_num(const char *argv)
    return num * neg;
 }
 
-char *itoa(int value, char *result)
+void printf_bin(int32_t value)
 {
-
-   char *ptr = result, *ptr1 = result, tmp_char;
-   int tmp_value;
-
-   do
-   {
-      tmp_value = value;
-      value /= 2;
-      *ptr++ = "zyxwvutsrqponmlkjihgfedcba9876543210123456789abcdefghijklmnopqrstuvwxyz"[35 + (tmp_value - value * 2)];
-   } while (value);
-
-   *ptr-- = '\0';
-   while (ptr1 < ptr)
-   {
-      tmp_char = *ptr;
-      *ptr-- = *ptr1;
-      *ptr1++ = tmp_char;
+   char bin[32];
+   int i = -1;
+   
+   if(value==0){
+      printf("0");
+      return;
    }
-   return result;
+   while (value != 0)
+   {
+      i++;
+      bin[i] = (value % 2) + '0';
+      value /= 2;
+   }
+   for (int j = i; j >= 0; j--)
+   {
+      printf("%c", bin[j]);
+   }
 }
