@@ -1,3 +1,9 @@
+/**
+ * @file calc.c
+ * @author Juan Ignacio Fernandez (juanfernandez@mi.unc.edu.ar)
+ * @brief Codigo principal
+ * 
+ */
 #include <stdio.h>
 #include <stdint.h>
 #include <unistd.h>
@@ -11,6 +17,13 @@ int32_t verification_unit(const char *argv);
 int32_t verification_opt(const char *argv);
 int32_t verification_num(const char *argv);
 
+/**
+ * @brief 
+ * 
+ * @param argc Cantidad de argumentos pasados en la ejecucion del bin
+ * @param argv Array con los argumentos pasados en la ejecucion del bin
+ * @return int32_t 1-> Error ; 0-> Finalizacion correcta
+ */
 int32_t main(int32_t argc, char **argv)
 {
    // Inicializaciones
@@ -23,6 +36,7 @@ int32_t main(int32_t argc, char **argv)
    int32_t (*operacion)(int32_t, int32_t, int32_t *);
    int32_t operando_1, operando_2, resultado, bin_1, bin_2;
 
+   // Verificacion de parametros y procesado de los mismo
    if (argc != 5)
    {
       printf("Error: Cantidad de argumentos invalido\n");
@@ -51,20 +65,24 @@ int32_t main(int32_t argc, char **argv)
       operando_2 = verification_num(argv[4]);
    }
 
+   // Ejecucion de programa en asm (suma/resta)
    resultado = operacion(operando_1, operando_2, &overflow);
 
+   // Deteccion de overflow
    if (overflow || resultado == -2147483648)
    {
       printf("Error: Resutado fuera del rango\n");
       return 1;
    }
 
+   // Asignacion de signo del resultado
    if (resultado < 0)
    {
       resultado = abs(resultado);
       sig = '-';
    }
 
+   // Print resultado
    if (bflag)
    {
       printf("(%c) ", sig);
@@ -77,6 +95,12 @@ int32_t main(int32_t argc, char **argv)
    return 0;
 }
 
+/**
+ * @brief Realiza convierte el numero en binario a decimal
+ * 
+ * @param argv Arreglo que contiene el numero en binario
+ * @return int32_t Numero convertido en decimal
+ */
 int32_t bin_to_dec(const char *argv)
 {
    int32_t rem, decimal = 0, base = 1;
@@ -113,6 +137,12 @@ int32_t bin_to_dec(const char *argv)
    return decimal * neg;
 }
 
+/**
+ * @brief Verifica que unidad de numero se ingresara (b-> binario; d-> decimal; otro->error). Si no es valido termina el programa
+ * 
+ * @param argv Arreglo que contiene el tipo de unidad (b o d)
+ * @return int32_t 1-> binario; 0-> decimal
+ */
 int32_t verification_unit(const char *argv)
 {
    int32_t bflag = 0;
@@ -134,6 +164,12 @@ int32_t verification_unit(const char *argv)
    return bflag;
 }
 
+/**
+ * @brief Verifica que operacion se desea realizar (+;-). Si no es valido termina el programa
+ * 
+ * @param argv Arreglo que contiene la operacion a realizar
+ * @return int32_t 1-> suma; 2-> resta
+ */
 int32_t verification_opt(const char *argv)
 {
    if (strlen(argv) == 1)
@@ -155,6 +191,12 @@ int32_t verification_opt(const char *argv)
    }
 }
 
+/**
+ * @brief Verifica que operacion se desea realizar (+;-). Si no es valido termina el programa
+ * 
+ * @param argv Arreglo que contiene la operacion a realizar
+ * @return int32_t 1-> suma; 2-> resta
+ */
 int32_t verification_num(const char *argv)
 {
    int32_t num = 0;
